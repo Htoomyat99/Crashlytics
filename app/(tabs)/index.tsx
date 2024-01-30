@@ -1,31 +1,41 @@
-import { StyleSheet } from 'react-native';
+import React, { useEffect } from "react";
+import { View, Button } from "react-native";
+import crashlytics from "@react-native-firebase/crashlytics";
 
-import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
+async function onSignIn(user: any) {
+  crashlytics().log("User signed in.");
+  await Promise.all([
+    crashlytics().setUserId(user.uid),
+    crashlytics().setAttribute("credits", String(user.credits)),
+    crashlytics().setAttributes({
+      role: "admin",
+      followers: "13",
+      email: user.email,
+      username: user.username,
+    }),
+  ]);
+  console.log("hi");
+}
 
-export default function TabOneScreen() {
+export default function App() {
+  useEffect(() => {
+    crashlytics().log("App mounted.");
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
+    <View>
+      <Button
+        title="Sign In"
+        onPress={() =>
+          onSignIn({
+            uid: "Aa0Bb1Cc2Dd3Ee4Ff5Gg6Hh7Ii8Jj9",
+            username: "Joaquin Phoenix",
+            email: "phoenix@example.com",
+            credits: 42,
+          })
+        }
+      />
+      <Button title="Test Crash" onPress={() => crashlytics().crash()} />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});

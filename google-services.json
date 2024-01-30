@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "813131983855",
+    "project_id": "authwithexpo-3d6bf",
+    "storage_bucket": "authwithexpo-3d6bf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813131983855:android:dc9d3591f536a17de6a41a",
+        "android_client_info": {
+          "package_name": "com.htoomyat992.crashanalytics"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEYuUW4D-TG777WLYvCxgQ41MKzswQKJY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
